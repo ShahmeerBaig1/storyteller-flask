@@ -32,11 +32,19 @@ def generate_story(prompt, retry_count=1):
         else:
             return {'error': 'An error occurred, Please try again'}
 
+
+
 @app.route('/api/generate', methods=['POST'])
 def generate():
     prompt = request.json.get('prompt', '')
     story = generate_story(prompt)
     return jsonify(story)
+
+
+@app.route('/', methods=['GET'])
+def index():
+    return "Hello"
+
 
 if __name__ == '__main__':
     app.run()
